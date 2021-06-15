@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ASPWebshop.Pages.Login;
+using ASPWebshop.Pages.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -23,24 +23,21 @@ namespace ASPWebshop.Pages
         [BindProperty]
         public LoginViewModel LoginViewModel { get; set; }
 
-        public IActionResult OnGet()
+        public async Task<IActionResult> OnGetAsync()
         {
             try
-            {
-                // Verification.  
+            { 
                 if (this.User.Identity.IsAuthenticated)
-                {
-                    // Home Page.  
-                    return this.RedirectToPage("/Index");
+                {  
+                    await SignOutAsync();
+                    return this.RedirectToPage("Index");
                 }
             }
             catch (Exception ex)
             {
-                // Info  
                 Console.Write(ex);
             }
 
-            // Info.  
             return this.Page();
         }
 
