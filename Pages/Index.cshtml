@@ -5,9 +5,15 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @Model.Name</h1>
+    <h1 class="display-4">Welcome Bitch</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
     <h2>The time on the server is @DateTime.Now</h2>
-    <p>Mail me at @Model.Email</p>
-    
 </div>
+
+@if (Model.User.Identity.IsAuthenticated) {
+    <h1>Hello, @Model.Context.User.Identity.Name!</h1>
+    <p>You can only see this content if you're authenticated.</p>
+} else {
+    <h1>Authentication Failure!</h1>
+    <p>You're not signed in.</p>
+}

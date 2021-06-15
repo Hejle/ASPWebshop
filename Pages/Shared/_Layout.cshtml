@@ -24,6 +24,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
+                        <li class="nav-item">
+                            @if (Model.User.Identity.IsAuthenticated)
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Logoff">Log out</a>
+                            } else {
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
+                            }
+                        </li>
                     </ul>
                 </div>
             </div>

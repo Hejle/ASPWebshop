@@ -1,4 +1,5 @@
 ﻿using ASPWebshop.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 
@@ -11,6 +12,8 @@ namespace ASPWebshop.Pages
         public string Name { get; set; }
         public string Email { get; set; }
 
+        public Microsoft.AspNetCore.Http.HttpContext Context { get; set; }
+
         public IndexModel(ILogger<IndexModel> logger, IInfoService infoService)
         {
             _logger = logger;
@@ -21,9 +24,8 @@ namespace ASPWebshop.Pages
 
         public void OnGet()
         {
-
+            Context = HttpContext;
         }
-
 
     }
 }
