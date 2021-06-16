@@ -1,0 +1,10 @@
+@page
+@model UserPageModel
+@{
+    ViewData["Title"] = "User Profile";
+}
+<h1>@ViewData["Title"]</h1>
+
+<p>Use this page to detail your user information</p>
+
+<p>Username: @Model.User.Identity.Name!</p>

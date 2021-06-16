@@ -4,11 +4,11 @@ using Microsoft.Extensions.Logging;
 
 namespace ASPWebshop.Pages
 {
-    public class PrivacyModel : PageModel
+    public class UserPageModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;
 
-        public PrivacyModel(ILogger<PrivacyModel> logger)
+        public UserPageModel(ILogger<PrivacyModel> logger)
         {
             _logger = logger;
         }

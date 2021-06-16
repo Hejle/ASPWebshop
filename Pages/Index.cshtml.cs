@@ -7,8 +7,6 @@ namespace ASPWebshop.Pages
     {
         private readonly ILogger<IndexModel> _logger;
 
-        public Microsoft.AspNetCore.Http.HttpContext Context { get; set; }
-
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
@@ -16,7 +14,6 @@ namespace ASPWebshop.Pages
 
         public void OnGet()
         {
-            Context = HttpContext;
         }
 
     }
