@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using ASPWebshop.Pages.Models;
+using ASPWebshop.Pages.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+//TODO: Make a login Service
+//TODO: Make a CreateUser Service
+using ASPWebshop.Services.Interfaces;
 
 namespace ASPWebshop.Pages
 {
@@ -83,6 +86,7 @@ namespace ASPWebshop.Pages
             await authenticationManager.SignOutAsync();
         }
 
+        //TODO: Make claims  with more than username
         private async Task SignInUser(string username, bool isPersistent)
         {
             // Initialization.  

@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace ASPWebshop.Pages.Models
+namespace ASPWebshop.Pages.ViewModels
 {
     public class LoginViewModel
     {
