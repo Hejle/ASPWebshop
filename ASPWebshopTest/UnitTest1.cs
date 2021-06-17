@@ -16,7 +16,7 @@ namespace ASPWebshopTest
         public void TestMethod2()
         {
             var testString = string.Empty;
-            Assert.IsNull(testString);
+            Assert.IsNotNull(testString);
         }
     }
 }
