@@ -8,6 +8,15 @@ namespace ASPWebshopTest
         [TestMethod]
         public void TestMethod1()
         {
+            string testString = null;
+            Assert.IsNull(testString);
+        }
+        
+        [TestMethod]
+        public void TestMethod2()
+        {
+            var testString = string.Empty;
+            Assert.IsNull(testString);
         }
     }
 }
