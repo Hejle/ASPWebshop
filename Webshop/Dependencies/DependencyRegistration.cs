@@ -10,7 +10,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             //services.AddSingleton<Interface, Implementation>();
 
-            services.AddSingleton<IInfoService, InfoService>();
             services.AddSingleton<IUserDataAccess, UserDataAccess>();
             services.AddSingleton<ILoginService, LoginService>();
 
