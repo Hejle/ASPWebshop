@@ -8,6 +8,11 @@
 <p>Use this page to login to your site.</p>
 
 
+@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+{
+    <p style="color: red;">@Model.ErrorMessage</p>
+}
+
 <section>
     <form method="post" role="form" class="form-horizontal">
         @Html.AntiForgeryToken()
