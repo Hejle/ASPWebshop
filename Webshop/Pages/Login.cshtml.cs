@@ -11,16 +11,22 @@ using Microsoft.Extensions.Logging;
 //TODO: Make a login Service
 //TODO: Make a CreateUser Service
 using ASPWebshop.Services.Interfaces;
+using ASPWebshop.Exceptions;
 
 namespace ASPWebshop.Pages
 {
     public class LoginModel : PageModel
     {
         private readonly ILogger<PrivacyModel> _logger;
+        private readonly ILoginService _loginService;
 
-        public LoginModel(ILogger<PrivacyModel> logger)
+        public string ErrorMessage {get; set;}
+
+        public LoginModel(ILogger<PrivacyModel> logger, ILoginService loginService)
         {
             _logger = logger;
+            _loginService = loginService;
+
         }
 
         [BindProperty]
@@ -58,9 +64,8 @@ namespace ASPWebshop.Pages
                 {
                     var username = this.LoginViewModel.Username;
                     var password = this.LoginViewModel.Password;
-                    var verified = true;
 
-                    if (verified)
+                    if (_loginService.verifyUser(username, password))
                     {
                         await this.SignInUser(username, false);
 
@@ -72,9 +77,12 @@ namespace ASPWebshop.Pages
                     }
                 }
             }
-            catch (Exception ex)
+            catch (UserException ex)
             {
-                Console.Write(ex);
+                //TODO:
+                ErrorMessage = ex.Message;
+            } catch (Exception e) {
+                Console.Write(e);
             }
             return this.Page();
         }
