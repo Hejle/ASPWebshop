@@ -1,7 +1,14 @@
+using System;
+using ASPWebshop.Pages.Models;
+
 namespace ASPWebshop.Services.Interfaces
 {
     public interface ILoginService
     {
-        bool verifyUser(string username, string password);
+        /**
+        *   Does stuff
+        *
+        */
+        UserLoginResult verifyUser(string username, string password);
     }
 }
