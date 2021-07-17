@@ -1,6 +1,7 @@
 using ASPWebshop.Exceptions;
 using ASPWebshop.Pages.Models;
 using ASPWebshop.Services.Interfaces;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,17 @@ namespace ASPWebshop.Services.Implementations
     public class UserDataAccess : IUserDataAccess
     {
 
-        private Dictionary<Guid, WebshopUser> userDatabase;
+        private readonly Dictionary<Guid, WebshopUser> userDatabase;
+        private readonly ILogger<UserDataAccess> _logger;
 
-        public UserDataAccess()
+        /// <summary>
+        /// Addes a default TestUser
+        /// </summary>
+        public UserDataAccess(ILogger<UserDataAccess> logger)
         {
             userDatabase = new Dictionary<Guid, WebshopUser>();
-            //Add default user
+            _logger = logger;
+            
             var user = new WebshopUser{
                 ID = Guid.NewGuid(),
                 EMail = "admin@admin.com",
@@ -34,16 +40,11 @@ namespace ASPWebshop.Services.Implementations
         {
             try
             {
-                var user = userDatabase.Select(x => x.Value).Where(d => d.Username.Equals(username));
-                if(user.Count() > 1) {
-                    //Todo: What should we do if there are multiple users with the same username
-                    throw new Exception();
-                }
-                return (WebshopUser)user.First();
+                return userDatabase.Select(x => x.Value).First(d => d.Username.Equals(username));
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                _logger.LogInformation(e.Message);
                 throw UserException.UserNotFoundException(username);
             }
         }
@@ -56,7 +57,7 @@ namespace ASPWebshop.Services.Implementations
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                _logger.LogInformation(e.Message);
                 throw new UserException("Could not find user for id: " + ID.ToString(), e);
             }
 
