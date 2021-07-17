@@ -6,7 +6,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionRegistration
     {
-        public static IServiceCollection Services(this IServiceCollection services)
+        public static IServiceCollection AddServices(this IServiceCollection services)
         {
             //services.AddSingleton<Interface, Implementation>();
 

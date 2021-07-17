@@ -28,7 +28,7 @@ namespace ASPWebshop.Pages
             var identity = User.Identity as ClaimsIdentity;
             IEnumerable<Claim> claims = identity.Claims;
             var claim = claims.First(x => x.Type.Equals(ClaimTypes.Name));
-            WebshopUser = _userDataAccess.getUser(claim.Value);
+            WebshopUser = _userDataAccess.GetUser(claim.Value);
         }
     }
 }

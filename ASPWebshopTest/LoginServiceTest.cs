@@ -17,7 +17,7 @@ namespace ASPWebshopTest
             var mock = new Mock<IUserDataAccess>();
             var userName = "TestUser";
             var password = "password";
-            mock.Setup(x => x.getUser(userName)).Returns(new WebshopUser {Username = userName, Password = password});
+            mock.Setup(x => x.GetUser(userName)).Returns(new WebshopUser {Username = userName, Password = password});
             var loginService = new LoginService(mock.Object);
 
             //Act
@@ -37,7 +37,7 @@ namespace ASPWebshopTest
             var userName = "TestUser";
             var password = "password";
             var failingPassword = "wrongpassword";
-            mock.Setup(x => x.getUser(userName)).Returns(new WebshopUser { Username = userName, Password = password});
+            mock.Setup(x => x.GetUser(userName)).Returns(new WebshopUser { Username = userName, Password = password});
             var loginService = new LoginService(mock.Object);
 
             //Act
