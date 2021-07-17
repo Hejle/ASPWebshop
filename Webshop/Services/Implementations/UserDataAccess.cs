@@ -40,7 +40,7 @@ namespace ASPWebshop.Services.Implementations
         {
             try
             {
-                return userDatabase.Select(x => x.Value).Where(d => d.Username.Equals(username)).First();
+                return userDatabase.Select(x => x.Value).First(d => d.Username.Equals(username));
             }
             catch (Exception e)
             {

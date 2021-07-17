@@ -41,7 +41,7 @@ namespace ASPWebshopTest
             var loginService = new LoginService(mock.Object);
 
             //Act
-            var verified = loginService.VerifyUser(userName, failingPassword);
+            loginService.VerifyUser(userName, failingPassword);
 
             // Assert - Expects exception
         }
