@@ -1,3 +1,6 @@
+using System;
+using ASPWebshop.Exceptions;
+using ASPWebshop.Pages.Models;
 using ASPWebshop.Services.Interfaces;
 
 namespace ASPWebshop.Services.Implementations
@@ -9,13 +12,14 @@ namespace ASPWebshop.Services.Implementations
         {
             _userDataAccess = userDataAccess;
         }
-        public bool verifyUser(string username, string password)
+
+        public UserLoginResult VerifyUser(string username, string password)
         {
-            var user = _userDataAccess.getUser(username);
+            var user = _userDataAccess.GetUser(username);
             if(user.Password.Equals(password)) {
-                return true;
+                return new UserLoginResult {WebshopUser = user, Verified = true};
             }
-            return false;
+            throw UserException.WrongPasswordException(user.Username);
         }
     }
 }

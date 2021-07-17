@@ -5,8 +5,8 @@ namespace ASPWebshop.Services.Interfaces
 {
     public interface IUserDataAccess
     {
-        User getUser(string username);
-        User getUser(Guid ID);
-        void AddUser(User user);
+        WebshopUser GetUser(string username);
+        WebshopUser GetUser(Guid ID);
+        void AddUser(WebshopUser user);
     }
 }

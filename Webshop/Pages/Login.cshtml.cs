@@ -8,10 +8,9 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-//TODO: Make a login Service
-//TODO: Make a CreateUser Service
 using ASPWebshop.Services.Interfaces;
 using ASPWebshop.Exceptions;
+using ASPWebshop.Pages.Models;
 
 namespace ASPWebshop.Pages
 {
@@ -64,10 +63,10 @@ namespace ASPWebshop.Pages
                 {
                     var username = this.LoginViewModel.Username;
                     var password = this.LoginViewModel.Password;
-
-                    if (_loginService.verifyUser(username, password))
+                    var userResult = _loginService.VerifyUser(username, password);
+                    if (userResult.Verified)
                     {
-                        await this.SignInUser(username, false);
+                        await this.SignInUser(userResult.WebshopUser, false);
 
                         return this.RedirectToPage("Index");
                     }
@@ -79,7 +78,6 @@ namespace ASPWebshop.Pages
             }
             catch (UserException ex)
             {
-                //TODO:
                 ErrorMessage = ex.Message;
             } catch (Exception e) {
                 Console.Write(e);
@@ -94,13 +92,14 @@ namespace ASPWebshop.Pages
             await authenticationManager.SignOutAsync();
         }
 
-        //TODO: Make claims  with more than username
-        private async Task SignInUser(string username, bool isPersistent)
+        private async Task SignInUser(WebshopUser user, bool isPersistent)
         {
             // Initialization.  
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, username),
+                new Claim(ClaimTypes.Name, user.Username),
+                new Claim(ClaimTypes.Email, user.EMail),
+                new Claim(ClaimTypes.UserData, user.ID.ToString()),
                 new Claim(ClaimTypes.Role, "Administrator")
             };
 

@@ -1,3 +1,4 @@
+using ASPWebshop.Exceptions;
 using ASPWebshop.Pages.Models;
 using ASPWebshop.Services.Implementations;
 using ASPWebshop.Services.Interfaces;
@@ -9,34 +10,40 @@ namespace ASPWebshopTest
     [TestClass]
     public class LoginServiceTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("UnitTest")]
         public void VerifyUser_WithCorrectUserAndPassword_ReturnTrue()
         {
             //Arrange
             var mock = new Mock<IUserDataAccess>();
-            mock.Setup(x => x.getUser("TestUser")).Returns(new User {Username = "TestUser", Password = "password"});
+            var userName = "TestUser";
+            var password = "password";
+            mock.Setup(x => x.GetUser(userName)).Returns(new WebshopUser {Username = userName, Password = password});
             var loginService = new LoginService(mock.Object);
 
             //Act
-            var verified = loginService.verifyUser("TestUser", "password");
+            var userLoginResult = loginService.VerifyUser(userName, password);
 
             //Assert
-            Assert.IsTrue(verified);
+            Assert.IsTrue(userLoginResult.Verified);
+            Assert.AreEqual(userName, userLoginResult.WebshopUser.Username);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("UnitTest")]
+        [ExpectedException(typeof(UserException))]
         public void VerifyUser_WithInCorrectUserAndPassword_ReturnFalse()
         {
             //Arrange
             var mock = new Mock<IUserDataAccess>();
-            mock.Setup(x => x.getUser("TestUser")).Returns(new User {Username = "TestUser", Password = "password"});
+            var userName = "TestUser";
+            var password = "password";
+            var failingPassword = "wrongpassword";
+            mock.Setup(x => x.GetUser(userName)).Returns(new WebshopUser { Username = userName, Password = password});
             var loginService = new LoginService(mock.Object);
 
             //Act
-            var verified = loginService.verifyUser("TestUser", "wrongpassword");
+            var verified = loginService.VerifyUser(userName, failingPassword);
 
-            //Assert
-            Assert.IsFalse(verified);
+            // Assert - Expects exception
         }
         
     }
