@@ -17,21 +17,21 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
-    - name: Debug
-      run: ls
     - name: Build
       run: dotnet build --no-restore
-    - name: Debug
-      run: ls
     - name: Run all tests except Integration Tests
       run: dotnet test --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
-    - name: Archive production artifacts
+    - name: Archive webshop artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Build-files
-        path: |
-          Webshop/bin
+        name: Webshop-files
+        path: Webshop/bin
           ASPWebshopTest/bin/
+    - name: Archive test artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Test-files
+        path: ASPWebshopTest/bin/
   
   analyze:
     runs-on: windows-latest
@@ -77,13 +77,16 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
-      - name: Debug
-        run: ls
+      - uses: actions/checkout@v2
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
-          name: Build-files
-      - name: Debug
-        run: ls
+          name: Webshop-files
+          path: Webshop
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Webshop-files
+          path: ASPWebshopTest
       - name: Run all tests except Integration Tests
         run: dotnet test --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
