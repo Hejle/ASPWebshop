@@ -9,6 +9,6 @@ namespace ASPWebshop.Services.Interfaces
         *   Does stuff
         *
         */
-        UserLoginResult verifyUser(string username, string password);
+        UserLoginResult VerifyUser(string username, string password);
     }
 }

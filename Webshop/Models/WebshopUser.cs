@@ -2,7 +2,7 @@ using System;
 
 namespace ASPWebshop.Pages.Models
 {
-    public class User
+    public class WebshopUser
     {
         public Guid ID { get; set; }
         public string Username { get; set; }

@@ -10,25 +10,25 @@ namespace ASPWebshopTest
     [TestClass]
     public class LoginServiceTest
     {
-        [TestMethod]
+        [TestMethod, TestCategory("UnitTest")]
         public void VerifyUser_WithCorrectUserAndPassword_ReturnTrue()
         {
             //Arrange
             var mock = new Mock<IUserDataAccess>();
             var userName = "TestUser";
             var password = "password";
-            mock.Setup(x => x.getUser(userName)).Returns(new User {Username = userName, Password = password});
+            mock.Setup(x => x.getUser(userName)).Returns(new WebshopUser {Username = userName, Password = password});
             var loginService = new LoginService(mock.Object);
 
             //Act
-            var userLoginResult = loginService.verifyUser(userName, password);
+            var userLoginResult = loginService.VerifyUser(userName, password);
 
             //Assert
             Assert.IsTrue(userLoginResult.Verified);
-            Assert.AreEqual(userName, userLoginResult.user.Username);
+            Assert.AreEqual(userName, userLoginResult.WebshopUser.Username);
         }
 
-        [TestMethod]
+        [TestMethod, TestCategory("UnitTest")]
         [ExpectedException(typeof(UserException))]
         public void VerifyUser_WithInCorrectUserAndPassword_ReturnFalse()
         {
@@ -37,11 +37,11 @@ namespace ASPWebshopTest
             var userName = "TestUser";
             var password = "password";
             var failingPassword = "wrongpassword";
-            mock.Setup(x => x.getUser(userName)).Returns(new User {Username = userName, Password = password});
+            mock.Setup(x => x.getUser(userName)).Returns(new WebshopUser { Username = userName, Password = password});
             var loginService = new LoginService(mock.Object);
 
             //Act
-            var verified = loginService.verifyUser(userName, failingPassword);
+            var verified = loginService.VerifyUser(userName, failingPassword);
 
             // Assert - Expects exception
         }

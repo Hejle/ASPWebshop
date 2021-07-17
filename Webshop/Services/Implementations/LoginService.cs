@@ -13,11 +13,11 @@ namespace ASPWebshop.Services.Implementations
             _userDataAccess = userDataAccess;
         }
 
-        public UserLoginResult verifyUser(string username, string password)
+        public UserLoginResult VerifyUser(string username, string password)
         {
             var user = _userDataAccess.getUser(username);
             if(user.Password.Equals(password)) {
-                return new UserLoginResult {user = user, Verified = true};
+                return new UserLoginResult {WebshopUser = user, Verified = true};
             }
             throw UserException.WrongPasswordException(user.Username);
         }

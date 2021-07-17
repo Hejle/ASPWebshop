@@ -10,13 +10,13 @@ namespace ASPWebshop.Services.Implementations
     public class UserDataAccess : IUserDataAccess
     {
 
-        private Dictionary<Guid, User> userDatabase;
+        private Dictionary<Guid, WebshopUser> userDatabase;
 
         public UserDataAccess()
         {
-            userDatabase = new Dictionary<Guid, User>();
+            userDatabase = new Dictionary<Guid, WebshopUser>();
             //Add default user
-            var user = new User{
+            var user = new WebshopUser{
                 ID = Guid.NewGuid(),
                 EMail = "admin@admin.com",
                 Username = "admin",
@@ -25,12 +25,12 @@ namespace ASPWebshop.Services.Implementations
             userDatabase.Add(user.ID,user);
         }
 
-        public void AddUser(User user)
+        public void AddUser(WebshopUser user)
         {
             userDatabase.Add(user.ID, user);
         }
 
-        public User getUser(string username)
+        public WebshopUser GetUser(string username)
         {
             try
             {
@@ -39,7 +39,7 @@ namespace ASPWebshop.Services.Implementations
                     //Todo: What should we do if there are multiple users with the same username
                     throw new Exception();
                 }
-                return (User)user.First();
+                return (WebshopUser)user.First();
             }
             catch (Exception e)
             {
@@ -48,7 +48,7 @@ namespace ASPWebshop.Services.Implementations
             }
         }
 
-        public User getUser(Guid ID)
+        public WebshopUser GetUser(Guid ID)
         {
             try
             {
