@@ -39,12 +39,13 @@ namespace ASPWebshop.Services.Implementations
                     //Todo: What should we do if there are multiple users with the same username
                     throw new Exception();
                 }
-                return (WebshopUser)user.First();
+                return user.First();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e);
                 throw UserException.UserNotFoundException(username);
+                return null;
             }
         }
 
