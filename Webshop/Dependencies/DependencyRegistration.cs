@@ -6,9 +6,15 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjectionRegistration
     {
+        /// <summary>
+        /// Addes Services to the Dependency Framework
+        /// A service is added with the following code.
+        /// services.AddSingleton<Interface, Implementation>();
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
         public static IServiceCollection AddServices(this IServiceCollection services)
         {
-            //services.AddSingleton<Interface, Implementation>();
 
             services.AddSingleton<IUserDataAccess, UserDataAccess>();
             services.AddSingleton<ILoginService, LoginService>();

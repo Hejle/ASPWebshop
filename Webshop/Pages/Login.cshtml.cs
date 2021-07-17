@@ -66,7 +66,7 @@ namespace ASPWebshop.Pages
                     var userResult = _loginService.VerifyUser(username, password);
                     if (userResult.Verified)
                     {
-                        await this.SignInUser(userResult.WebshopUser, false);
+                        await this.SignInUser(userResult.WebshopUser);
 
                         return this.RedirectToPage("Index");
                     }
@@ -92,7 +92,7 @@ namespace ASPWebshop.Pages
             await authenticationManager.SignOutAsync();
         }
 
-        private async Task SignInUser(WebshopUser user, bool isPersistent)
+        private async Task SignInUser(WebshopUser user)
         {
             // Initialization.  
             var claims = new List<Claim>
@@ -135,9 +135,9 @@ namespace ASPWebshop.Pages
                 // Sign In.  
                 await authenticationManager.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimPrincipal, authProperties);
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                
+                _logger.LogError(e.Message);
             }
         }
     }

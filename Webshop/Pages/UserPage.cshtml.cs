@@ -10,16 +10,12 @@ namespace ASPWebshop.Pages
 {
     public class UserPageModel : PageModel
     {
-        private readonly ILogger<PrivacyModel> _logger;
         private readonly IUserDataAccess _userDataAccess;
-
-        public List<string> StringList { get; set; }
 
         public WebshopUser WebshopUser { get; set; }
 
-        public UserPageModel(ILogger<PrivacyModel> logger, IUserDataAccess userDataAccess)
+        public UserPageModel(IUserDataAccess userDataAccess)
         {
-            _logger = logger;
             _userDataAccess = userDataAccess;
         }
 
