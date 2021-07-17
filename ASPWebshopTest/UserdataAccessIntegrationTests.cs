@@ -1,10 +1,5 @@
-﻿using ASPWebshop.Exceptions;
-using ASPWebshop.Pages.Models;
-using ASPWebshop.Services.Implementations;
-using ASPWebshop.Services.Interfaces;
-using ASPWebshopTest.TestAttributes;
+﻿using ASPWebshopTest.TestAttributes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
 using System;
 
 namespace ASPWebshopTest
