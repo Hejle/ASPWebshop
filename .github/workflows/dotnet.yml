@@ -8,9 +8,7 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -27,7 +25,7 @@ jobs:
         name: Build-files
         path: |
           Webshop/bin
-          ASPWebshopTest/bin/Debug/net5.0/ASPWebshopTest.dll
+          ASPWebshopTest/bin/
   
   analyse:
     runs-on: windows-latest
@@ -68,9 +66,13 @@ jobs:
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
         
   test:
+    name: Run Unittest
+    needs: build
     runs-on: windows-latest
     steps:
-      - name: Get build
-        uses: actions/upload-artifact@v2
+      - name: Download a single artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: Build-filess
       - name: Run all tests except Integration Tests
         run: dotnet test --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
