@@ -71,9 +71,13 @@ jobs:
     needs: build
     runs-on: windows-latest
     steps:
+      - name: Debug
+        run: ls
       - name: Download a single artifact
         uses: actions/download-artifact@v2
         with:
           name: Build-files
+      - name: Debug
+        run: ls
       - name: Run all tests except Integration Tests
         run: dotnet test --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
