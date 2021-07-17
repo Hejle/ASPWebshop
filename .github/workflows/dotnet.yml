@@ -17,8 +17,14 @@ jobs:
         dotnet-version: 5.0.x
     - name: Restore dependencies
       run: dotnet restore
+    - name: Debug
+      run: ls
     - name: Build
       run: dotnet build --no-restore
+    - name: Debug
+      run: ls
+    - name: Run all tests except Integration Tests
+      run: dotnet test --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
     - name: Archive production artifacts
       uses: actions/upload-artifact@v2
       with:
