@@ -20,6 +20,7 @@ namespace ASPWebshop.Services.Implementations
                 return new UserLoginResult {WebshopUser = user, Verified = true};
             }
             throw UserException.WrongPasswordException(user.Username);
+            return null;
         }
     }
 }
