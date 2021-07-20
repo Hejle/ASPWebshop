@@ -19,7 +19,7 @@ namespace ASPWebshop.Pages
         private readonly ILogger<PrivacyModel> _logger;
         private readonly ILoginService _loginService;
 
-        public string ErrorMessage {get; set;}
+        public string ErrorMessage { get; set; }
 
         public LoginModel(ILogger<PrivacyModel> logger, ILoginService loginService)
         {

@@ -21,14 +21,6 @@ namespace ASPWebshop.Services.Implementations
         {
             userDatabase = new Dictionary<Guid, WebshopUser>();
             _logger = logger;
-            
-            var user = new WebshopUser{
-                ID = Guid.NewGuid(),
-                EMail = "admin@admin.com",
-                Username = "admin",
-                Password = "admin"
-            };
-            userDatabase.Add(user.ID,user);
         }
 
         public void AddUser(WebshopUser user)
