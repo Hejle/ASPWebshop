@@ -1,6 +1,9 @@
 using Microsoft.Extensions.Logging;
 using ASPWebshop.Services.Interfaces;
 using ASPWebshop.Services.Implementations;
+using ASPWebshopDatabase;
+using ASPWebshopDatabase.Services;
+using ASPWebshopDatabase.Services.Implementations;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -18,6 +21,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddSingleton<IUserDataAccess, UserDataAccess>();
             services.AddSingleton<ILoginService, LoginService>();
+
+            services.AddDbContext<UserContext>();
 
             services.AddLogging(cfg => cfg.AddConsole()).Configure<LoggerFilterOptions>(cfg => cfg.MinLevel = LogLevel.Debug);
             return services;

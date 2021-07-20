@@ -1,6 +1,6 @@
+using ASPWebshop.Common.Models;
 using ASPWebshop.Exceptions;
-using ASPWebshop.Pages.Models;
-using ASPWebshop.Services.Interfaces;
+using ASPWebshopDatabase.Services;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -8,16 +8,16 @@ using System.Linq;
 
 namespace ASPWebshop.Services.Implementations
 {
-    public class UserDataAccess : IUserDataAccess
+    public class UserMockDataAccess : IUserDataAccess
     {
 
         private readonly Dictionary<Guid, WebshopUser> userDatabase;
-        private readonly ILogger<UserDataAccess> _logger;
+        private readonly ILogger<UserMockDataAccess> _logger;
 
         /// <summary>
         /// Addes a default TestUser
         /// </summary>
-        public UserDataAccess(ILogger<UserDataAccess> logger)
+        public UserMockDataAccess(ILogger<UserMockDataAccess> logger)
         {
             userDatabase = new Dictionary<Guid, WebshopUser>();
             _logger = logger;

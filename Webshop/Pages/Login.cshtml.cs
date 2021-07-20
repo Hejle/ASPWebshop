@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ASPWebshop.Services.Interfaces;
 using ASPWebshop.Exceptions;
-using ASPWebshop.Pages.Models;
+using ASPWebshop.Common.Models;
 
 namespace ASPWebshop.Pages
 {

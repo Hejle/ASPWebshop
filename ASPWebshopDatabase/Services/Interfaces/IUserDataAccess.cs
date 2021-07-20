@@ -1,7 +1,7 @@
+﻿using ASPWebshop.Common.Models;
 using System;
-using ASPWebshop.Pages.Models;
 
-namespace ASPWebshop.Services.Interfaces
+namespace ASPWebshopDatabase.Services
 {
     public interface IUserDataAccess
     {

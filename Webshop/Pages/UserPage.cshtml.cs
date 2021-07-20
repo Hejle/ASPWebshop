@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ASPWebshop.Pages.Models;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
 using System.Security.Claims;
 using ASPWebshop.Services.Interfaces;
+using ASPWebshop.Common.Models;
+using ASPWebshopDatabase.Services;
 
 namespace ASPWebshop.Pages
 {

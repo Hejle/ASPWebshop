@@ -2,6 +2,7 @@ using System;
 using ASPWebshop.Exceptions;
 using ASPWebshop.Pages.Models;
 using ASPWebshop.Services.Interfaces;
+using ASPWebshopDatabase.Services;
 
 namespace ASPWebshop.Services.Implementations
 {

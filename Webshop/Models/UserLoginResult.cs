@@ -1,4 +1,4 @@
-using System;
+using ASPWebshop.Common.Models;
 
 namespace ASPWebshop.Pages.Models
 {
