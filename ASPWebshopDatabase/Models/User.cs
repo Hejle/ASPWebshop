@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace ASPWebshopDatabase.Models
 {
     [Index(nameof(Username), IsUnique = true)]
+    [Index(nameof(EMail), IsUnique = true)]
     public class User
     {
         [Required]
@@ -12,7 +13,9 @@ namespace ASPWebshopDatabase.Models
         public Guid ID { get; set; }
         [Required]
         public string Username { get; set; }
+
         [Required]
+        [EmailAddress]
         public string EMail { get; set; }
 
         [Required]
