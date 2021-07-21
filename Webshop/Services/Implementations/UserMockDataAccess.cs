@@ -28,6 +28,11 @@ namespace ASPWebshop.Services.Implementations
             userDatabase.Add(user.ID, user);
         }
 
+        public void DeleteUser(Guid ID)
+        {
+            userDatabase.Remove(ID);
+        }
+
         public WebshopUser GetUser(string username)
         {
             try

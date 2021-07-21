@@ -15,6 +15,14 @@ namespace ASPWebshopDatabase.Services.Implementations
             db.SaveChanges();
         }
 
+        public void DeleteUser(Guid ID)
+        {
+            using var db = new UserContext();
+            var user = db.Users.First(x => x.ID.Equals(ID));
+            db.Users.Remove(user);
+            db.SaveChanges();
+        }
+
         public WebshopUser GetUser(string username)
         {
             using var db = new UserContext();

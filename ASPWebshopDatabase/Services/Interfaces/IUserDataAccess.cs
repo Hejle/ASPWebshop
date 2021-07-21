@@ -8,5 +8,6 @@ namespace ASPWebshopDatabase.Services
         WebshopUser GetUser(string username);
         WebshopUser GetUser(Guid ID);
         void AddUser(WebshopUser user);
+        void DeleteUser(Guid ID);
     }
 }
