@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
+﻿using ASPWebshopDatabase.Services;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace ASPWebshop.Pages
 {
     public class PrivacyModel : PageModel
     {
         public PrivacyModel()
-        {
-        }
+        {}
     }
 }

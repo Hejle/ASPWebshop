@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using ASPWebshop.Services.Interfaces;
 using ASPWebshop.Exceptions;
-using ASPWebshop.Pages.Models;
+using ASPWebshop.Common.Models;
 
 namespace ASPWebshop.Pages
 {
@@ -19,7 +19,7 @@ namespace ASPWebshop.Pages
         private readonly ILogger<PrivacyModel> _logger;
         private readonly ILoginService _loginService;
 
-        public string ErrorMessage {get; set;}
+        public string ErrorMessage { get; set; }
 
         public LoginModel(ILogger<PrivacyModel> logger, ILoginService loginService)
         {

@@ -1,6 +1,6 @@
-using System;
+﻿using System;
 
-namespace ASPWebshop.Pages.Models
+namespace ASPWebshop.Common.Models
 {
     public class WebshopUser
     {

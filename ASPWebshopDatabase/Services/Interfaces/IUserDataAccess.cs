@@ -1,12 +1,13 @@
+﻿using ASPWebshop.Common.Models;
 using System;
-using ASPWebshop.Pages.Models;
 
-namespace ASPWebshop.Services.Interfaces
+namespace ASPWebshopDatabase.Services
 {
     public interface IUserDataAccess
     {
         WebshopUser GetUser(string username);
         WebshopUser GetUser(Guid ID);
         void AddUser(WebshopUser user);
+        void DeleteUser(Guid ID);
     }
 }

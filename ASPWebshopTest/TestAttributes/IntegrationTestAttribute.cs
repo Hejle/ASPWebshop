@@ -9,8 +9,10 @@ namespace ASPWebshopTest.TestAttributes
 
         public IntegrationTestAttribute()
         {
-            this.TestCategories = new List<string>(1);
-            this.TestCategories.Add("IntegrationTest");
+            this.TestCategories = new List<string>(1)
+            {
+                "IntegrationTest"
+            };
         }
     }
 }
