@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  catalogdb:
+    image: mongo
+
+  aspwebshop.catalog:
+    image: ${DOCKER_REGISTRY-}aspwebshopcatalog
+    build:
+      context: .
+      dockerfile: ASPWebshop.Catalog/Dockerfile
+
