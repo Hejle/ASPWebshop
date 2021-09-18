@@ -25,7 +25,7 @@ jobs:
       with:
         java-version: 1.11
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore  ASPWebshop.sln
     - name: Cache SonarCloud packages
       uses: actions/cache@v1
       with:
@@ -44,11 +44,11 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       shell: powershell
       run: |
-        dotnet build --no-restore
-        dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./ --filter "TestCategory!=IntegrationTest"
+        dotnet build ASPWebshop.sln --no-restore
+        dotnet test ASPWebshop.sln /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=./ --filter "TestCategory!=IntegrationTest"
         dotnet build-server shutdown
         .\.sonar\scanner\dotnet-sonarscanner begin /k:"Hejle_ASPWebshop" /o:"hejle" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="ASPWebshopTest\coverage.opencover.xml" /d:sonar.host.url="https://sonarcloud.io"
-        dotnet build --no-restore
+        dotnet build ASPWebshop.sln --no-restore
         .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
     - name: Run all tests except Integration Tests
-      run: dotnet test --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
+      run: dotnet test ASPWebshop.sln --no-build --verbosity normal --filter "TestCategory!=IntegrationTest"
