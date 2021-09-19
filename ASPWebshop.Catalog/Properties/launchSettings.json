@@ -3,8 +3,8 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:32293",
-      "sslPort": 44370
+      "applicationUrl": "http://localhost:26481",
+      "sslPort": 0
     }
   },
   "profiles": {
@@ -15,24 +15,20 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "ASPWebshop": {
+    "ASPWebshop.Catalog": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "dotnetRunMessages": "true",
-      "applicationUrl": "https://localhost:5001;http://localhost:5000"
+      "applicationUrl": "http://localhost:5000"
     },
-    "WSL 2": {
-      "commandName": "WSL2",
+    "Docker": {
+      "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "https://localhost:5001",
-      "environmentVariables": {
-        "ASPNETCORE_URLS": "https://localhost:5001;http://localhost:5000",
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      },
-      "distributionName": ""
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "publishAllPorts": true
     }
   }
 }
